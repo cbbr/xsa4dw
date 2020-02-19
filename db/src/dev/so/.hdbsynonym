@@ -1,0 +1,8 @@
+{
+  "/BIC/APSD00018": {
+    "target": {
+      "object": "/BIC/APSD00018",
+      "schema": "SAPHANADB"
+    }
+  }
+}

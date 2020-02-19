@@ -1,0 +1,14 @@
+{
+  "B42": {
+    "object_owner": {
+      "roles": [
+        "b42::core_external_access"
+      ]
+    },
+    "application_user": {
+      "roles": [
+        "b42::core_external_access"
+      ]
+    }
+  }
+}

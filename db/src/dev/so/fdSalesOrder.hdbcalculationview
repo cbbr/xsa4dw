@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="fdSalesOrder" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Foundation Sales Order"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="/BIC/APSD00018">
+    <resourceUri>/BIC/APSD00018</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="salesOrder_view">
+    <viewAttributes>
+      <viewAttribute id="idSalesOrder"/>
+      <viewAttribute id="idSalesOrderItem"/>
+      <viewAttribute id="idCustomer"/>
+      <viewAttribute id="idCalendar"/>
+      <viewAttribute id="fgColdStore"/>
+      <viewAttribute id="qtSoldItems"/>
+      <viewAttribute id="vlSalesAmount"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="/BIC/APSD00018">
+      <mapping xsi:type="Calculation:AttributeMapping" target="idSalesOrder" source="ORDER_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="idSalesOrderItem" source="ITEM_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="fgColdStore" source="COLD_STORE_FLAG"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="qtSoldItems" source="ITEMS_SOLD"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="vlSalesAmount" source="SALES_AMOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="idCalendar" source="CALENDAR_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="idCustomer" source="CUSTOMER_ID"/>
+    </input>
+  </calculationView>
+</calculationViews>
+<logicalModel id="salesOrder_view">
+  <attributes>
+    <attribute id="idSalesOrder" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Sales Order"/>
+      <keyMapping columnObjectName="salesOrder_view" columnName="idSalesOrder"/>
+    </attribute>
+    <attribute id="idSalesOrderItem" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Sales Order Item"/>
+      <keyMapping columnObjectName="salesOrder_view" columnName="idSalesOrderItem"/>
+    </attribute>
+    <attribute id="idCustomer" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Customer"/>
+      <keyMapping columnObjectName="salesOrder_view" columnName="idCustomer"/>
+    </attribute>
+    <attribute id="idCalendar" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Calendar ID"/>
+      <keyMapping columnObjectName="salesOrder_view" columnName="idCalendar"/>
+    </attribute>
+    <attribute id="fgColdStore" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Cold Store"/>
+      <keyMapping columnObjectName="salesOrder_view" columnName="fgColdStore"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="qtSoldItems" order="6" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Sold Items"/>
+      <measureMapping columnObjectName="salesOrder_view" columnName="qtSoldItems"/>
+    </measure>
+    <measure id="vlSalesAmount" order="7" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Sales Amount"/>
+      <measureMapping columnObjectName="salesOrder_view" columnName="vlSalesAmount"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="92" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="salesOrder_view" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
